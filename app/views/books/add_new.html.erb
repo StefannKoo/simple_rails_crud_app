@@ -1,0 +1,26 @@
+<div class="container p-5 w-50 mt-5 rounded border"> 
+<div class="text-center font-bold">
+    <h3>New Book</h3>
+</div>
+    <%=form_with model:@publisher do |f|%>
+        <div class="form-group ps-5 pe-5">
+            <%= f.label:name, class:"fw-bold"%>
+            <%= f.text_field:name ,placeholder:"Insert Name",class:"form-control" %>
+        </div>
+        <br>
+        <div class="form-group ps-5 pe-5">
+            <%= f.label:date,class:"fw-bold" %>
+            <%= f.date_field:date,class:"form-control" %>
+        </div>
+        <br>
+
+        <div class="form-check ms-5 mb-2 pe-5">
+        <%=f.label:HaveEbook,class:"fw-bold" %>
+        <%= f.check_box:HaveEbook,class:"form-check-input" %>
+        </div>
+
+        <div>
+        <%=f.submit "Add book",class:"btn btn-secondary w-25 ms-5 mt-1"%>
+        </div>
+    <% end %>
+</div>
