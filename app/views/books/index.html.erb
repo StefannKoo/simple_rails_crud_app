@@ -1,14 +1,20 @@
+<% if flash[:notice] %>
+<div class="alert alert-success text-center mt-2" role="alert">
+  <%= flash[:notice] %>
+</div>
+<% end %>
 <table class="table  mt-5 ">
   <thead class="thead-dark text-center">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Book title</th>
-      <th scope="col">Date</th>
-      <th scope="col">Have EBook</th>
       <th scope="col">Publisher</th>
       <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+      <th scope="col">Show book</th>
     </tr>
   </thead>
+
   <tbody>
   <% i=1 %> 
   <% @books.each do |b| %>
@@ -16,14 +22,10 @@
       <th scope="row"><%=i %></th>
       <% i+=1  %>
       <td><%=b.name %></td>
-      <td><%="#{b.date.day}.#{b.date.month}.#{b.date.year}"%></td>
-      <% ebook='Yes'
-      if !b.ebook
-      ebook='No'
-         end %>
-      <td><%=ebook %></td>
       <td><%=b.publisher.name %></td>
-      <td><%= link_to "Edit book",edit_book_path(b.id),class:"nav-link" %></td>
+      <td><%= link_to "Edit book",edit_book_path(b),class:"nav-link" %></td>
+      <td><%= link_to "Delete",book_path(b),data:{turbo_method: :delete},class:"nav-link" %></td>
+      <td><%=link_to "Show book",book_path(b),class:"nav-link" %> </td>
     </tr>
    <% end %>
   </tbody>

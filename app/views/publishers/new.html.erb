@@ -1,0 +1,53 @@
+
+ <% if @publisher.errors.any? %>
+    <div class="alert alert-danger text-center mt-2" role="alert">
+    <% @publisher.errors.full_messages.each do |m| %>
+        <div><%=m %> </div>
+        <% end %>
+    </div>
+<% end %>
+ 
+ <div class="container p-5 w-50 border mt-5"> 
+    <div class="text-center font-bold">
+        <h3>New publisher</h3>
+    </div>
+        <%=form_for @publisher,  url: publishers_path do |f|%>
+            <div class="form-group ps-5 pe-5">
+                <%= f.label:name, class:"fw-bold"%>
+                <%= f.text_field:name ,placeholder:"Publishers Name",class:"form-control" %>
+            </div>
+            <br>
+            <div class="form-group ps-5 pe-5">
+                <%= f.label:adress,class:"fw-bold" %>
+                <%= f.text_field:adress,placeholder:"Adress of publisher",class:"form-control" %>
+            </div>
+            <br>
+            <div>
+            </div>
+            <div class="text-center font-bold">
+                 <h3>Books </h3>
+            </div>
+            <%= f.fields_for :books do |b| %>
+                <div class="form-group ps-5 pe-5">
+                <%= b.label:name, class:"fw-bold"%>
+                <%= b.text_field:name ,placeholder:"Insert Name",class:"form-control" %>
+            </div>
+            <br>
+            <div class="form-group ps-5 pe-5">
+                <%= b.label:date,class:"fw-bold" %>
+                <%= b.date_field:date,class:"form-control" %>
+            </div>
+            <br>
+    
+            <div class="form-check ms-5 mb-2 pe-5">
+                <%=b.label:ebook,class:"fw-bold" %>
+                <%= b.check_box:ebook,class:"form-check-input" %>
+            </div>
+            <div class="form-check ms-4 mb-2 pe-5">
+                <%=b.label:image,class:"fw-bold me-3" %><br>
+                <%=b.file_field:image %>
+            </div>
+            <% end %>
+            <%=f.submit "Create",class:"btn btn-secondary ms-5"%>
+        <% end %>
+  </div>

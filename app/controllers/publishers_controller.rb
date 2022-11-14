@@ -1,39 +1,53 @@
 class PublishersController<ApplicationController
+
+    before_action :set_publisher,  only: [:show,:destroy,:edit]
+
     def index     
         @publishers=Publisher.all  
-    end
-    def new_publisher
-    end
-    def add_new_publisher
+    end  
 
-        @publisher=Publisher.new(name:params[:name],
-        adress:params[:adress])
+    def new
+        @publisher=Publisher.new
+        @publisher.books.build
+    end
 
-        if @publisher.save 
+    def create
+         puts "Parametri: #{params}"
+        @publisher=Publisher.new(publisher_params)
+
+        if @publisher.save
+            flash[:notice]='Publishes is sucessfull added !'
             redirect_to root_path
         else
-            redirect_to add_new_publisher_path
-        end
-    end
-    def show_one
-        @publisher=Publisher.find(params[:id])
+            render :new,status: :unprocessable_entity
+        end      
+  
     end
 
-    def delete
-     @publisher=Publisher.find(params[:id]) 
-     @books=Book.where(publisher_id:params[:id])
+    def show     
+    end
+
+    def destroy
+
+      @books=Book.where(publisher_id:params[:id])
 
      if @publisher.destroy && @books.destroy_all
+        flash[:notice]="Publisher #{@publisher.name} was deleted sucessfully !"
         redirect_to root_path
      end
     end
-    
-    def show_publishers_books
-        @books=Book.where(publisher_id:params[:id])
-        @publisher=Publisher.find(params[:id])
+
+    def edit
     end
 
-    def edit_publisher
+    private 
+
+    def publisher_params
+        params.require(:publisher).permit(:name,:adress, books_attributes:[:name,:date,:ebook,:image])
+    end
+
+    def set_publisher
+        @publisher=Publisher.find(params[:id])
     end
 
 end

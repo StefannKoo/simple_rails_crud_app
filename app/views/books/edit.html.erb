@@ -2,7 +2,7 @@
 <div class="text-center font-bold">
     <h3>Edit Book</h3>
 </div>
-   <%=form_for @book, url: update_book_path(@book.id), html: {method: "post"} do |f| %>
+   <%=form_for @book, url: book_path(@book), html: {method: "put"} do |f| %>
     <div class="form-group ps-5 pe-5">
     <%= f.label:name, class:"fw-bold"%>
     <%= f.text_field:name ,placeholder:"Insert Name",class:"form-control" %>
@@ -14,9 +14,16 @@
 </div>
 <br>
 
+
+<div class="form-check ms-4 mb-2 pe-5">
+    <%=f.label:publisher,class:"fw-bold" %>
+    <%=select("publisher", "publisher_id",Publisher.all.collect {|p| [ p.name, p.id ] },
+     { include_blank: false }, {class: "form-select  "})%>
+</div>
+
 <div class="form-check ms-5 mb-2 pe-5">
-<%=f.label:ebook,class:"fw-bold" %>
-<%= f.check_box:ebook,class:"form-check-input" %>
+    <%=f.label:ebook,class:"fw-bold" %>
+    <%= f.check_box:ebook,class:"form-check-input" %>
 </div>
 
 <div>

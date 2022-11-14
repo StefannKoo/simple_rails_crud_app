@@ -1,3 +1,9 @@
+
+<% if flash[:notice] %>
+<div class="alert alert-success mt-2 text-center" role="alert">
+  <%=flash[:notice] %>
+</div>
+<% end %>
 <br>
 <table class="table table-bordered">
   <thead class="text-center">
@@ -9,22 +15,23 @@
       <th scope="col">Delete</th>
     </tr>
   </thead>
+
   <% i=1 %>
   <% @publishers.each do |p|  %>
   <tbody>
     <tr class="text-center h6">
       <th scope="row"><%=i %></th>
       <td >
-      <%=link_to p.name,show_one_path(p.id), class:"text-decoration-none"%>
+      <%=link_to p.name,publisher_path(p), class:"text-decoration-none"%>
       </td>
       <% i+=1 %>
-      <td><%= link_to 'Show books' ,publishers_books_path(p.id),class:"nav-link pl-0 " %></td>
-      <td><%= link_to 'Add book' ,new_book_path(p.id),class:"nav-link" %></td>
-      <td><%= link_to 'Delete publisher' ,delete_path(p.id),class:"nav-link" %></td>
+      <td><%= link_to 'Show books' ,publisher_books_path(p),class:"nav-link pl-0 " %></td>
+      <td><%= link_to 'Add book' ,new_publisher_book_path(p),class:"nav-link" %></td>
+      <td><%= link_to 'Delete publisher' ,publisher_path(p),data:{turbo_method: :delete},class:"nav-link" %></td>
     </tr>
     <% end %>
  
   </tbody>
 </table>
 <br>
-<%= link_to 'New publisher',add_new_path, class:'nav-link btn btn-secondary w-25 text-light' %>
+<%= link_to 'New publisher',new_publisher_path, class:'nav-link btn btn-secondary w-25 text-light' %>

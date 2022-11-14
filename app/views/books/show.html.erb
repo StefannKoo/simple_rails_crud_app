@@ -1,0 +1,30 @@
+<div class="container w-25 ",style=" height:auto;">
+<div class="card mt-2 border " style="height:200px;margin:auto;">
+<%=image_tag(@book.image,style:"height:350px")%>
+  <div class="card-body">
+   <div class="mt-1">
+        <label >Book:</label>
+        <strong class="card-title"><%=@book.name %></strong><br>
+    </div>
+    <div class="mt-1">
+        <label >Publisher:</label>
+        <strong class="card-text"><%=@book.publisher.name %></strong><br>
+    </div>
+    <div class="mt-1">
+        <label> Have E Book:</label>
+        <% ebook='Yes'
+        if @book.ebook
+        ebook='No'
+        end %>
+        <strong class="card-text"><%=ebook %></strong><br>
+    </div>
+    <div class="mt-1">
+        <label> Date: </label>
+        <strong><%="#{@book.date.day}.#{@book.date.month}.#{@book.date.year}"%></strong>
+    </div>
+  </div>
+  <div class="card-body">
+    <%= link_to "Back", books_path %>
+  </div>
+</div>
+</div>

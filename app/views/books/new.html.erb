@@ -1,8 +1,13 @@
+<% if flash[:notice] %>
+<div class="alert alert-success text-center mt-2" role="alert">
+  <%= flash[:notice] %>
+</div>
+<% end %>
 <div class="container p-5 w-50 mt-5 rounded border"> 
 <div class="text-center font-bold">
     <h3>New Book</h3>
 </div>
-    <%=form_with model:@publisher do |f|%>
+    <%=form_with model:@book,url:publisher_books_path do |f|%>
         <div class="form-group ps-5 pe-5">
             <%= f.label:name, class:"fw-bold"%>
             <%= f.text_field:name ,placeholder:"Insert Name",class:"form-control" %>
@@ -15,8 +20,12 @@
         <br>
 
         <div class="form-check ms-5 mb-2 pe-5">
-        <%=f.label:HaveEbook,class:"fw-bold" %>
-        <%= f.check_box:HaveEbook,class:"form-check-input" %>
+            <%=f.label:ebook,class:"fw-bold" %>
+            <%= f.check_box:ebook,class:"form-check-input" %>
+        </div>
+        <div class="form-check ms-4 mb-2 pe-5">
+            <%=f.label:image,class:"fw-bold me-3" %><br>
+            <%=f.file_field:image %>
         </div>
 
         <div>
