@@ -1,0 +1,31 @@
+<% if flash[:notice] %>
+<div class="alert alert-success text-center mt-2" role="alert">
+  <%= flash[:notice] %>
+</div>
+<% end %>
+<div class="container p-5 w-50 mt-5 rounded border border-info" style="background-color:white"> 
+<div class="text-center font-bold">
+    <h3>New Territory</h3>
+</div>
+    <%=form_with model:@territory,url:territories_path do |f|%>
+        <div class="form-group text-start">
+            <%= f.label:name, class:"fw-bold"%>
+            <%= f.text_field:name ,placeholder:"Insert Name",class:"form-control border border-info" %>
+        </div>
+        <br>
+        <div class="form-group text-start">
+            <%= f.label:currency,class:"fw-bold" %>
+            <%= f.text_field:currency,placeholder:"Insert currency",class:"form-control border border-info" %>
+        </div>
+        <br>
+
+        <div class="text-start">
+            <%=f.label:flag,class:"fw-bold" %><br>
+            <%=f.file_field:flag %>
+        </div>
+
+        <div>
+        <%=f.submit "Add territory",class:"btn btn-secondary mt-1"%>
+        </div>
+    <% end %>
+</div>

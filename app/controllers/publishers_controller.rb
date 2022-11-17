@@ -33,7 +33,7 @@ class PublishersController<ApplicationController
 
      if @publisher.destroy && @books.destroy_all
         flash[:notice]="Publisher #{@publisher.name} was deleted sucessfully !"
-        redirect_to root_path
+        redirect_to publishers_path
      end
     end
 
