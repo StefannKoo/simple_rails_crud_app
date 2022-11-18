@@ -1,0 +1,36 @@
+<div class="container p-5 w-50 mt-5 rounded border border-info" style="background-color:white"> 
+<div class="text-center font-bold">
+    <h3>Edit platform</h3>
+</div>
+   <%=form_for @platform, url: platform_path(@platform), html: {method: "put"} do |f| %>
+    <div class="form-group text-start">
+    <%= f.label:name, class:"fw-bold"%>
+    <%= f.text_field:name ,placeholder:"Insert Name",class:"form-control  border border-info" %>
+</div>
+<br>
+<div class="form-group text-start">
+    <%= f.label:code,class:"fw-bold" %>
+    <%= f.text_field:code,class:"form-control  border border-info" %>
+</div>
+<br>
+<div class="text-start">
+    <%=f.label:territory,class:"fw-bold" %>
+    <%=select("territory", "territory_id",Territory.all.collect {|t| [ t.name, t.id ] },
+    { include_blank: false }, {class: "form-select  "})%>
+</div><br>
+
+<div class="text-start">
+    <%=f.label:logo,class:"fw-bold" %><br>
+    <div class="row">
+        <div style="margin-left:auto;margin-right:auto;" class="col-2">
+        <%=image_tag(@platform.logo, style:"height:100%;width:100%;") %>
+        </div>
+         <%=f.file_field:logo, class:"col-10" %>
+    </div>
+</div>
+
+<div>
+<%=f.submit "Save changes",class:"btn btn-secondary mt-1"%>
+</div>
+<% end %>
+</div>

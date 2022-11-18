@@ -33,7 +33,6 @@ class BooksController<ApplicationController
   end
 
   def update
-
    if @book.update(book_params.merge(publisher_id:params[:publisher][:publisher_id]))
     flash[:notice]="The book was edited !"
       redirect_to books_path

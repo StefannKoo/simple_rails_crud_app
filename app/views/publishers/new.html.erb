@@ -29,9 +29,9 @@
             </div>
                 <%= f.fields_for :books do |b| %>
                     <div class="form-group text-start">
-                    <%= b.label:name, class:"fw-bold"%>
-                    <%= b.text_field:name ,placeholder:"Insert Name",class:"form-control border border-info" %>
-                </div>
+                        <%= b.label:name, class:"fw-bold"%>
+                        <%= b.text_field:name ,placeholder:"Insert Name",class:"form-control border border-info" %>
+                     </div>
                 <br>
                 <div class="form-group text-start">
                     <%= b.label:date,class:"fw-bold" %>

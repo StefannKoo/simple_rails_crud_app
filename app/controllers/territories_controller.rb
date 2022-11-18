@@ -6,6 +6,7 @@ class TerritoriesController<ApplicationController
 
     def new 
         @territory=Territory.new
+        @territory.platforms.build
     end
 
     def create 
@@ -44,8 +45,8 @@ class TerritoriesController<ApplicationController
     private
 
     def territory_params
-        params.require(:territory).permit(:name,:currency,:flag)
-      end
+        params.require(:territory).permit(:name,:currency,:flag, platforms_attributes:[:name,:code,:logo])
+    end
 
     def set_territory
         @territory=Territory.find(params[:id])
