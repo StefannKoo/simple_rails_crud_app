@@ -23,7 +23,7 @@ class PlatformsController<ApplicationController
     end
 
     def update
-        puts "parametriii"
+        
         if @platform.update(platform_params.merge(territory_id:params[:territory][:territory_id]))
             redirect_to platforms_path
         else

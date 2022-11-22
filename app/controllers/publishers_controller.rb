@@ -12,7 +12,6 @@ class PublishersController<ApplicationController
     end
 
     def create
-         puts "Parametri: #{params}"
         @publisher=Publisher.new(publisher_params)
 
         if @publisher.save
