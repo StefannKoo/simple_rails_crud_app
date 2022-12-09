@@ -1,0 +1,32 @@
+<div class="container p-3 w-50 mt-3  rounded border border-info" style="background-color:white"> 
+<div class="text-center font-bold">
+    <h3>New Platform</h3>
+</div>
+    <%=form_with model:@platform,url:platforms_path do |f|%>
+        <div class="form-group text-start">
+            <%= f.label:name, class:"fw-bold"%>
+            <%= f.text_field:name ,placeholder:"Insert Name",class:"form-control border border-info" %>
+        </div>
+        <br>
+        <div class="form-group text-start">
+            <%= f.label:code,class:"fw-bold" %>
+            <%= f.text_field:code,placeholder:"Insert code",class:"form-control border border-info" %>
+        </div>
+        <br>
+
+        <div class="text-start">
+            <%=f.label:territory,class:"fw-bold" %>
+            <%=select("territory", "territory_id",Territory.all.collect {|t| [ t.name, t.id ] },
+            { include_blank: false }, {class: "form-select  "})%>
+         </div><br>
+
+        <div class="text-start">
+            <%=f.label:logo,class:"fw-bold" %><br>
+            <%=f.file_field:logo %>
+        </div>
+
+        <div>
+        <%=f.submit "Add platform",class:"btn btn-secondary mt-1"%>
+        </div>
+    <% end %>
+</div>

@@ -5,7 +5,10 @@
 </div>
 <% end %>
 <br>
-<table class="table table-bordered">
+<div  style="border-top:5px solid rgb(200,200,200); border-right:4px solid rgb(200,200,200)">
+<div class="p-2" style="background-color:white;">
+<h4 class="text-start">Publishers </h4>
+<table class="table text-info  rounded">
   <thead class="text-center">
     <tr>
       <th scope="col">Number</th>
@@ -18,20 +21,30 @@
 
   <% i=1 %>
   <% @publishers.each do |p|  %>
-  <tbody>
+  <tbody >
     <tr class="text-center h6">
       <th scope="row"><%=i %></th>
       <td >
-      <%=link_to p.name,publisher_path(p), class:"text-decoration-none"%>
+      <%=link_to p.name, publisher_path(p), class:"text-decoration-none text-info"  %>
       </td>
       <% i+=1 %>
-      <td><%= link_to 'Show books' ,publisher_books_path(p),class:"nav-link pl-0 " %></td>
-      <td><%= link_to 'Add book' ,new_publisher_book_path(p),class:"nav-link" %></td>
-      <td><%= link_to 'Delete publisher' ,publisher_path(p),data:{turbo_method: :delete},class:"nav-link" %></td>
+      <td><%= link_to publisher_books_path(p),class:"nav-link pl-0 " do %> 
+        <i class="fa-sharp fa-solid fa-eye text-info"></i>
+      <% end %>   
+      </td>
+      <td><%= link_to new_publisher_book_path(p),class:"nav-link" do %>
+       <i class="fa-regular fa-plus text-info"></i>
+       <% end %>
+      </td>
+      <td><%= link_to publisher_path(p),data:{turbo_method: :delete},class:"nav-link" do %>
+        <i class="fa-sharp fa-solid fa-trash text-info"></i>
+      <% end %>
+      </td>
     </tr>
     <% end %>
- 
   </tbody>
 </table>
 <br>
-<%= link_to 'New publisher',new_publisher_path, class:'nav-link btn btn-secondary w-25 text-light' %>
+ <%= link_to 'New publisher',new_publisher_path, class:'nav-link btn btn-info w-25 text-light'  %>
+ </div>
+</div>

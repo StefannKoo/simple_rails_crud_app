@@ -12,7 +12,6 @@ class PublishersController<ApplicationController
     end
 
     def create
-         puts "Parametri: #{params}"
         @publisher=Publisher.new(publisher_params)
 
         if @publisher.save
@@ -33,7 +32,7 @@ class PublishersController<ApplicationController
 
      if @publisher.destroy && @books.destroy_all
         flash[:notice]="Publisher #{@publisher.name} was deleted sucessfully !"
-        redirect_to root_path
+        redirect_to publishers_path
      end
     end
 

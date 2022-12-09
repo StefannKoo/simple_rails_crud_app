@@ -1,0 +1,49 @@
+<% if flash[:notice] %>
+<div class="alert alert-success text-center mt-2" role="alert">
+  <%= flash[:notice] %>
+</div>
+<% end %>
+<div class="container p-3 w-50 mt-3  rounded border border-info" style="background-color:white"> 
+<div class="text-center font-bold">
+    <h3>New Territory</h3>
+</div>
+    <%=form_with model:@territory,url:territories_path do |f|%>
+        <div class="form-group text-start">
+            <%= f.label:name, class:"fw-bold"%>
+            <%= f.text_field:name ,placeholder:"Insert Name",class:"form-control border border-info" %>
+        </div>
+        <br>
+        <div class="form-group text-start">
+            <%= f.label:currency,class:"fw-bold" %>
+            <%= f.text_field:currency,placeholder:"Insert currency",class:"form-control border border-info" %>
+        </div>
+        <br>
+
+        <div class="text-start">
+            <%=f.label:flag,class:"fw-bold" %><br>
+            <%=f.file_field:flag %>
+        </div>
+        <div class="text-center font-bold text-start">
+                 <h3>Platforms </h3>
+         </div>
+        <%=f.fields_for :platforms do |platform| %>
+            <div class="form-group text-start">
+                <%=platform.label:name, class:"fw-bold" %>
+                <%=platform.text_field:name, placeholder:"Insert Name",class:"form-control border border-info"%>
+            </div> 
+            <div class="form-group text-start">
+                <%=platform.label:code, class:"fw-bold" %>
+                <%=platform.text_field:code,  placeholder:"Insert Name",class:"form-control border border-info"%>
+            </div>    <br>
+            <div class="text-start">
+                <%=platform.label:logo,class:"fw-bold" %><br>
+                <%=platform.file_field:logo %>
+            </div>
+
+        <% end %>
+
+        <div>
+        <%=f.submit "Add territory",class:"btn btn-secondary mt-1"%>
+        </div>
+    <% end %>
+</div>

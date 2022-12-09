@@ -14,8 +14,20 @@
 
   <body>
   <%= render partial:"partials/navbar" %>
-    <div class="container">
-    <%= yield %>
+  
+   
+    <div class="row  text-center" style="width:100%;">
+    <div class="col-2" style="height:100vh; background-color:rgb(248,248,248);border-right:2px solid rgb(176,176,176) ">
+        <%= render partial:"partials/menu" %>
     </div>
+  
+    <div class="col-10" style="	background-color:rgb(224,224,224);">
+      
+       <%= yield %>
+   
+    </div>
+</div>
+
+
   </body>
 </html>

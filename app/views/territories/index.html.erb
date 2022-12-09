@@ -1,0 +1,49 @@
+<% if flash[:notice] %>
+<div class="alert alert-success mt-2 text-center" role="alert">
+  <%=flash[:notice] %>
+</div>
+<% end %>
+<div class="mt-3" style="border-top:5px solid rgb(200,200,200); border-right:4px solid rgb(200,200,200)">
+<div class="p-2" style="background-color:white;">
+<h4 class="text-start">Territories </h4>
+<table class="table text-info  rounded">
+  <thead class="text-center">
+    <tr>
+      <th scope="col">Number</th>
+      <th scope="col">Name</th>
+      <th scope="col">Currency</th>
+      <th scope="col">Flag</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+
+  <% i=1 %>
+  <% @territories.each do |t|  %>
+  <tbody >
+    <tr class="text-center h6">
+      <th scope="row" class="text-secondary" style="text-align:center;vertical-align:middle;"><%=i %></th>
+      <td style="text-align:center;vertical-align:middle;">
+      <%=link_to t.name, edit_territory_path(t), class:"text-decoration-none text-info"  %>
+      </td>
+      <% i+=1 %>
+      </td>
+      <td class="text-secondary" style="text-align:center;vertical-align:middle;"><%=t.currency %>
+      </td>
+     <td class="text-center" style:"">
+     <div style="width:100px;height:60px;margin-left:auto;margin-right:auto;">
+        <%=image_tag(t.flag, style:"height:100%;width:100%;") %>
+     </div>
+      </td>
+      <td style="text-align:center;vertical-align:middle;">
+      <%= link_to territory_path(t),data:{turbo_method: :delete},class:"nav-link" do %>
+        <i class="fa-sharp fa-solid fa-trash " style="color:red"></i>
+      <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+ <%= link_to 'New territorry',new_territory_path, class:'nav-link btn btn-info w-25 text-light'  %>
+ </div>
+</div>
